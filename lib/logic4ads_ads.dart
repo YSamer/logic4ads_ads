@@ -9,9 +9,12 @@ enum AdType {
 }
 
 enum AdSize {
-  smallBannerAd,
-  mediumBannerAd,
-  largeBannerAd,
+  smallBannerAd('360×50'),
+  mediumBannerAd('360×70'),
+  largeBannerAd('360×90');
+
+  final String slug;
+  const AdSize(this.slug);
 }
 
 class Logic4Ads extends StatelessWidget {
@@ -24,7 +27,7 @@ class Logic4Ads extends StatelessWidget {
   Widget build(BuildContext context) {
     if (adType == AdType.bannerAd) {
       if (adSize == AdSize.largeBannerAd) {
-        return LargeBannerAd();
+        return const LargeBannerAd();
       } else if (adSize == AdSize.mediumBannerAd) {
       } else if (adSize == AdSize.smallBannerAd) {}
     } else if (adType == AdType.nativeAd) {}

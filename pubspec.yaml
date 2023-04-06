@@ -1,7 +1,7 @@
 name: logic4ads_ads
 description: Logic4Ads Ads To create ads from logic4ads.com
 version: 0.0.1
-homepage:
+homepage: https://github.com/YSamer/logic4ads_ads
 
 environment:
   sdk: '>=2.18.1 <3.0.0'

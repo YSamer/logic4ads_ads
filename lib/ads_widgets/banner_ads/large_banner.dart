@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logic4ads_ads/core/functions/go_to_url.dart';
 import 'package:logic4ads_ads/core/models/image_ad.dart';
+import 'package:logic4ads_ads/logic4ads_ads.dart';
 
 class LargeBannerAd extends StatelessWidget {
   const LargeBannerAd({super.key});
@@ -11,7 +12,7 @@ class LargeBannerAd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: loadBannerAd(),
+      future: loadBannerAd(AdSize.largeBannerAd.slug),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -37,10 +38,11 @@ class LargeBannerAd extends StatelessWidget {
   }
 }
 
-Future<ImageAdModel> loadBannerAd() async {
+Future<ImageAdModel> loadBannerAd(String slug) async {
   ImageAdModel adModel = ImageAdModel();
+  // eyJpdiI6InNpK0U0SDNkOVhZVmxpSHo5MmZUQVE9PSIsInZhbHVlIjoiSWxvWWNPUnJtakVxWVdzYytUZHJHQT09IiwibWFjIjoiNDc1Zjg0OTI5ZjQ4ZDU2NDQxY2Q5ZWIwYTQ0MDYwMTRkYmIyYzdhMGQxMzI0ODMzOGQ0YTFkYjQ1ZjExNmUyZiJ9
   Uri uri = Uri.parse(
-      'https://logic4ads.com/mobile-banner-ad/eyJpdiI6InNpK0U0SDNkOVhZVmxpSHo5MmZUQVE9PSIsInZhbHVlIjoiSWxvWWNPUnJtakVxWVdzYytUZHJHQT09IiwibWFjIjoiNDc1Zjg0OTI5ZjQ4ZDU2NDQxY2Q5ZWIwYTQ0MDYwMTRkYmIyYzdhMGQxMzI0ODMzOGQ0YTFkYjQ1ZjExNmUyZiJ9/360x90');
+      'https://logic4ads.com/mobile-banner-ad/${Logic4Ads.publisherId}/$slug');
   var res = await http.get(uri);
   if (res.statusCode == 200) {
     Map<String, String> ad = Map<String, String>.from(json.decode(res.body));

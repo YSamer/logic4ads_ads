@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Logic4Ads.ap = "com.example.example";
     Logic4Ads.publisherId =
         'eyJpdiI6Im9YdTJ6TmtXZTM4M1RDalFYWnVIVWc9PSIsInZhbHVlIjoiSlVjQmxmb3lGZnNmUGpvNm44elBaQT09IiwibWFjIjoiMzA1NmNjY2ZkYzdlNWZhMzI0OTg0MjU4MWJiOTVlYjMwODI4ZGY0NTAyNmU3NTFkNGU1YTdiYjdlOTk3ZTNhZSJ9';
     return Scaffold(

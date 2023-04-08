@@ -22,6 +22,7 @@ class Logic4Ads extends StatelessWidget {
   final AdType adType;
   final AdSize adSize;
   static String publisherId = '';
+  static String appIDName = '';
 
   @override
   Widget build(BuildContext context) {

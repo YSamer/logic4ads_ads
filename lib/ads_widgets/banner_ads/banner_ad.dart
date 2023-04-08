@@ -50,7 +50,11 @@ Future<ImageAdModel> loadBannerAd(String slug) async {
   // eyJpdiI6InNpK0U0SDNkOVhZVmxpSHo5MmZUQVE9PSIsInZhbHVlIjoiSWxvWWNPUnJtakVxWVdzYytUZHJHQT09IiwibWFjIjoiNDc1Zjg0OTI5ZjQ4ZDU2NDQxY2Q5ZWIwYTQ0MDYwMTRkYmIyYzdhMGQxMzI0ODMzOGQ0YTFkYjQ1ZjExNmUyZiJ9
   String url = 'https://logic4ads.com/mobile-banner-ad';
   Uri uri = Uri.parse(url);
-  Map<String, String> body = {"publisherId": Logic4Ads.publisherId, "slug": slug};
+  Map<String, String> body = {
+    "appID_name": Logic4Ads.appIDName,
+    "publisherId": Logic4Ads.publisherId,
+    "slug": slug,
+  };
   var res = await http.post(uri, body: json.encode(body));
   log(res.body);
   if (res.statusCode == 200) {

@@ -5,7 +5,7 @@ import 'package:logic4ads_ads/ads_widgets/banner_ads/banner_ad.dart';
 
 enum AdType {
   bannerAd,
-  nativeAd,
+  // nativeAd,
 }
 
 enum AdSize {
@@ -28,7 +28,8 @@ class Logic4Ads extends StatelessWidget {
   Widget build(BuildContext context) {
     if (adType == AdType.bannerAd) {
       return BannerAd(adSize: adSize);
-    } else if (adType == AdType.nativeAd) {}
+    } 
+    // else if (adType == AdType.nativeAd) {}
     return Container();
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logic4ads_ads/core/functions/go_to_url.dart';
@@ -20,17 +21,22 @@ class _BannerAdState extends State<BannerAd> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(seconds: 3), (timer) {
+    refersh();
+    Timer.periodic(const Duration(seconds: 60), (timer) {
       refersh();
     });
   }
 
-  void refersh() {
-    setState(() async {
-      log('refresh');
-      await loadBannerAd(AdSize.largeBannerAd.slug);
+  void refersh() async {
+    await loadBannerAd(AdSize.largeBannerAd.slug).then((imageAdModel) {
+      targetUrl = imageAdModel.targetUrl;
+      imageUrl = imageAdModel.imageUrl;
     });
+    setState(() {});
   }
+
+  String targetUrl = '';
+  String imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -39,32 +45,23 @@ class _BannerAdState extends State<BannerAd> {
         : widget.adSize == AdSize.mediumBannerAd
             ? 70
             : 50;
-
-    return FutureBuilder(
-      future: loadBannerAd(AdSize.largeBannerAd.slug),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            return const SizedBox();
-          } else if (snapshot.hasData) {
-            if (snapshot.data!.state == AdLoadState.successLoad) {
-              log(snapshot.data!.targetUrl);
-              return SizedBox(
+    return imageUrl.isNotEmpty
+        ? SizedBox(
+            height: height,
+            width: 360,
+            child: InkWell(
+              onTap: () {
+                goToUrl(targetUrl);
+              },
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
                 height: height,
                 width: 360,
-                child: InkWell(
-                  onTap: () {
-                    goToUrl(snapshot.data!.targetUrl);
-                  },
-                  child: Image.network(snapshot.data!.imageUrl),
-                ),
-              );
-            }
-          }
-        }
-        return const SizedBox();
-      },
-    );
+                useOldImageOnUrlChange: true,
+              ),
+            ),
+          )
+        : const SizedBox();
   }
 }
 

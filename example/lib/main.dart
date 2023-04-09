@@ -25,9 +25,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Logic4Ads.ap = "com.example.example";
+    Logic4Ads.appIDName = "com.example.example";
     Logic4Ads.publisherId =
-        'eyJpdiI6Im9YdTJ6TmtXZTM4M1RDalFYWnVIVWc9PSIsInZhbHVlIjoiSlVjQmxmb3lGZnNmUGpvNm44elBaQT09IiwibWFjIjoiMzA1NmNjY2ZkYzdlNWZhMzI0OTg0MjU4MWJiOTVlYjMwODI4ZGY0NTAyNmU3NTFkNGU1YTdiYjdlOTk3ZTNhZSJ9';
+        'eyJpdiI6IlYwayt2VktXeXExVjBrR2srakVrVUE9PSIsInZhbHVlIjoiZWdQK3h4MkdaeUIyTmU2UW5ZMThsZz09IiwibWFjIjoiNTdiN2U0ODU0Y2UxZDUzNDZjMTk5NTFmNGMwZDU4ZWIzYzRiNGU3OWUyZDg4Nzc4YTE5OGNhZGNlZWI0ZDk1YyJ9';
     return Scaffold(
       body: Container(),
       bottomNavigationBar: const Logic4Ads(
